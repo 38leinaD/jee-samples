@@ -17,6 +17,8 @@ $ docker-compose -f docker-compose.payara.yml up
 
 === Wildfly
 
+To run this on Wildfly, edit link:https://github.com/38leinaD/jee-samples/blob/master/datasource-definition/cars/src/main/java/de/dplatz/cars/business/entity/DatasourceProducer.java[DatasourceProducer.java]. You need to comment in the annotation for Wildfly. And comment out the annotation for Payara. 
+
 ----
 $ cd cars
 $ ./gradlew build
