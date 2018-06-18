@@ -1,0 +1,47 @@
+= Playground for EclipseLink Cache-Coherence
+
+This is a simple playground to experiment with EclipseLink's cache-coordination feature.
+In specific, I used it to test the JGroups-based integration on Websphere Liberty. The default database beeing used is PostgreSQL.
+
+You can read more about the challenge to use it under Liberty link:http://dplatz.de/blog/2018/wlp-eclipselink-cache-coordination.html[on my blog].
+
+== Usage
+
+Start the application:
+
+----
+$ git clone https://github.com/38leinaD/eclipselink-cache.git
+$ cd eclipselink-cache/cars
+$ ./gradlew build
+$ cd ../cars-st
+$ docker-compose up
+----
+
+Run some test-request against the application by running:
+
+----
+$ ./test.sh
+----
+
+Note that PostgreSQL by default does not log the SQL-queries executed via JDBC.
+Because seeing the queries that reach the database is helpful when testing a caching solution, you can enable it as follows after the Docker compose environment was started at least once before:
+
+----
+$ cp src/test/postgresql/postgresql.conf pgdata 
+$ docker-compose up
+----
+
+Now execute:
+----
+curl -X POST -d '{"model": "tesla"}' -H "Content-Type: application/json"  http://localhost:80/cars/resources/cars
+----
+
+You should see also some logging about the statement from the PostgreSQL container.
+
+== Resources
+
+* https://wiki.eclipse.org/EclipseLink/Examples/JPA/CacheCoordination
+* https://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_cache_coordination_protocol.htm
+* https://www.ibm.com/support/knowledgecenter/en/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/twlp_disable_eclipselink.html
+* https://www.eclipse.org/forums/index.php/t/1069341/
+* http://www.microhowto.info/howto/log_all_queries_to_a_postgresql_server.html

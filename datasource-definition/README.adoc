@@ -1,0 +1,30 @@
+= Datasource-Definitions and Self-Contained Java EE applications
+
+This is a simple playground to experiment with `@DatasourceDefinition` and variable-replacement in annotations.
+You can read more about it link:[here].
+
+You can read more about the challenge to use it under Liberty link:http://dplatz.de/blog/2018/wlp-eclipselink-cache-coordination.html[on my blog].
+
+== Usage
+
+=== Payara
+
+----
+$ cd cars
+$ ./gradlew build
+$ docker-compose -f docker-compose.payara.yml up
+----
+
+=== Wildfly
+
+----
+$ cd cars
+$ ./gradlew build
+$ docker-compose -f docker-compose.wildfly.yml up
+----
+
+In a different shell you can now fire a request if the application is working and accessing the database.
+
+----
+$ curl -i -X POST -d '{"model": "tesla"}' -H "Content-Type: application/json" http://localhost:8080/cars/resources/cars
+----

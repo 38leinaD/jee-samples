@@ -1,0 +1,8 @@
+bin
+.gradle
+.project
+build
+.env
+.settings
+.classpath
+pgdata
