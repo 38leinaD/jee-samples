@@ -2,6 +2,8 @@ version: '2.1'
 services:
   postgres:
     image: postgres:9.5
+    ports:
+     - "5432:5432"
   appsvr:
     image: jboss/wildfly:13.0.0.Final
     command: ["/opt/jboss/wildfly/bin/standalone.sh", "--server-config=standalone-ee8.xml", "-b", "0.0.0.0"]

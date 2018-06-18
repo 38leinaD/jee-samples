@@ -18,19 +18,32 @@ import javax.sql.DataSource;
         databaseName = "${ENV=DB_DATABASENAME}",
         minPoolSize = 10,
         maxPoolSize = 50)
-// Wildfly
+// Wildfly (works)
 /*
 @DataSourceDefinition(
     name = "java:app/jdbc/primary",
     className = "org.postgresql.xa.PGXADataSource",
-    user = "${db.user:postgres}",
+    user = "postgres",
     password = "postgres",
-    serverName = "${db.serverName:postgres}",
+    serverName = "${DB_SERVERNAME:postgres}",
     portNumber = 5432,
-    databaseName = "postgres",
+    databaseName = "${DB_DATABASENAME:postgres}",
     minPoolSize = 10,
     maxPoolSize = 50)
     */
+// Wildfly (bug; not working currently)
+/*
+@DataSourceDefinition(
+    name = "java:app/jdbc/primary",
+    className = "org.postgresql.xa.PGXADataSource",
+    user = "${DB_USER:postgres}",
+    password = "${DB_PASSWORD:postgres}",
+    serverName = "${DB_SERVERNAME:postgres}",
+    portNumber = 5432,
+    databaseName = "${DB_DATABASENAME:postgres}",
+    minPoolSize = 10,
+    maxPoolSize = 50)
+*/
 public class DatasourceProducer {
 	
 	@Resource(lookup="java:app/jdbc/primary")
