@@ -15,11 +15,9 @@
 
             <property name="eclipselink.logging.level.sql" value="FINE" />
             <property name="eclipselink.logging.level" value="FINE" />
-            <property name="eclipselink.logging.level.cache" value="FINE" />
 
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
-            <!--property name="hibernate.generate_statistics" value="true" /-->
         </properties>
     </persistence-unit>
 </persistence>

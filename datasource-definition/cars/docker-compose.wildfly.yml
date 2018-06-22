@@ -1,19 +1,14 @@
 version: '2.1'
 services:
-  postgres:
+  postgres1:
     image: postgres:9.5
     ports:
      - "5432:5432"
   appsvr:
     image: jboss/wildfly:13.0.0.Final
-    command: ["/opt/jboss/wildfly/bin/standalone.sh", "--server-config=standalone-ee8.xml", "-b", "0.0.0.0"]
+    command: ["/opt/jboss/wildfly/bin/standalone.sh", "--server-config=standalone-ee8.xml", "-b", "0.0.0.0", "-DDB_SERVERNAME=postgres1"]
     ports:
      - "8080:8080"
     volumes:
      - "./build/libs/cars.war:/opt/jboss/wildfly/standalone/deployments/cars.war"
      - "./src/main/wildfly/standalone-ee8.xml:/opt/jboss/wildfly/standalone/configuration/standalone-ee8.xml"
-    environment:
-      - "DB_SERVERNAME=postgres"
-      - "DB_USER=postgres"
-      - "DB_PASSWORD=postgres"
-      - "DB_DATABASENAME=postgres"
