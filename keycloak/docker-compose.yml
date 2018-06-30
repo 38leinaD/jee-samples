@@ -1,0 +1,30 @@
+version: '2.1'
+services:
+  keycloak:
+    image: jboss/keycloak
+    command: ["-b", "0.0.0.0",
+              "-Dkeycloak.migration.action=import",
+              "-Dkeycloak.migration.provider=singleFile",
+              "-Dkeycloak.migration.file=/opt/keycloak.export.json",
+              "-Dkeycloak.migration.strategy=OVERWRITE_EXISTING"]
+    ports:
+     - "8180:8080"
+    volumes:
+     - "./keycloak.export.json:/opt/keycloak.export.json"
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+  appsvr:
+    image: jboss/wildfly:10.1.0.Final
+    command: ["/opt/jboss/wildfly/bin/standalone.sh", "--server-config=standalone-full.xml", "-b", "0.0.0.0"]
+    ports:
+     - "8080:8080"
+    volumes:
+     - "./build/libs/cars.war:/opt/jboss/wildfly/standalone/deployments/cars.war"
+    depends_on:
+     - keycloak
+    healthcheck:
+      test: curl --fail http://127.0.0.1:8080/cars/resources/health || exit 1
+      interval: 5s
+      timeout: 10s
+      retries: 3
