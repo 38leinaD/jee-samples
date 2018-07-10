@@ -418,7 +418,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "http://localhost:8080/cars/*"
+        "http://appsvr:8080/cars/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
