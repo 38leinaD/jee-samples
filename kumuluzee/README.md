@@ -1,9 +1,13 @@
 # Kumuluzee for standalone JavaEE Apps
 
-NOT WORKING
+## Run
 
-## Usage
+## From Maven
 
-1. ```mvn clean package```
+```mvn kumuluzee:run```
 
-2. ```java -cp "target/classes:target/dependency/*" com.kumuluz.ee.EeApplication```
+### Standalone
+
+1. ```mvn clean package ```
+
+2. ```java -jar target/carz.jar```
