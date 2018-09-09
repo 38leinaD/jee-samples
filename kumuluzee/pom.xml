@@ -131,19 +131,18 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.10</version>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+                <groupId>com.kumuluz.ee</groupId>
+                <artifactId>kumuluzee-maven-plugin</artifactId>
+                <version>${kumuluzee.version}</version>
+                <executions>
+                    <execution>
+                        <id>package</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
@@ -208,6 +207,6 @@
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<docker.showLogs>true</docker.showLogs>
 		<composeFile>docker-compose.yml</composeFile>
-		<kumuluzee.version>3.0.0-beta.2</kumuluzee.version>
+		<kumuluzee.version>3.0.0-beta.3</kumuluzee.version>
 	</properties>
 </project>
