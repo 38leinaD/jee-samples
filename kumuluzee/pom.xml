@@ -166,7 +166,7 @@
 							<run>
 								<wait>
 									<http>
-										<url>http://localhost:80/carz/resources/health</url>
+										<url>http://localhost:80/resources/health</url>
 										<method>GET</method>
 										<status>200</status>
 									</http>

@@ -10,15 +10,15 @@ services:
   #    - "1521:1521"
   appsvr:
     # image: 38leinad/wildfly-10-jdbc
-    image: jboss/wildfly:10.1.0.Final
+    image: openjdk:8
     # Add "wait-for db:1521 -- <command>" to command to wait on another service.
-    command: ["/opt/jboss/wildfly/bin/standalone.sh", "--server-config=standalone-full.xml", "-b", "0.0.0.0"]
+    command: ["java", "-jar", "/opt/carz.jar"]
     ports:
      - "80:8080"
     volumes:
-     - "./target/carz.war:/opt/jboss/wildfly/standalone/deployments/carz.war"
+     - "./target/carz.jar:/opt/carz.jar"
     healthcheck:
-      test: curl --fail http://127.0.0.1:8080/carz/resources/health || exit 1
+      test: curl --fail http://127.0.0.1:8080/resources/health || exit 1
       interval: 5s
       timeout: 10s
       retries: 3
