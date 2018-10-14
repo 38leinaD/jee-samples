@@ -1,0 +1,30 @@
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+    // Apply the application plugin to add support for building an application
+    id 'application'
+    //id "net.ltgt.apt" version "0.18"
+    id "net.ltgt.apt-eclipse" version "0.18"
+    
+}
+
+// Define the main class for the application
+mainClassName = 'App'
+
+dependencies {
+    annotationProcessor project(':apt-processors')
+}
+
+/*
+compileJava {
+	options.annotationProcessorGeneratedSourcesDirectory = file("${projectDir}/src/main/generated")
+}
+*/
+
+eclipse {
+    classpath {
+        file.beforeMerged { cp ->
+            cp.entries.add( new org.gradle.plugins.ide.eclipse.model.SourceFolder('build/generated/source/apt/main', null) )
+        }
+    }
+}

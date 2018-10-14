@@ -1,0 +1,4 @@
+rootProject.name = 'apt-example'
+
+include 'apt-processors'
+include 'apt-users'
