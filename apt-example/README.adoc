@@ -1,0 +1,4 @@
+= Using Java Annotation Processors from Gradle and Eclipse
+
+This is a sample Gradle-project for developing annotation-processors.
+You can read the details link:http://dplatz.de/blog/2018/gradle-apt.html[on my blog].
