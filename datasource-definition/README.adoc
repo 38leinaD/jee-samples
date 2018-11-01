@@ -1,9 +1,7 @@
 = Datasource-Definitions and Self-Contained Java EE applications
 
 This is a simple playground to experiment with `@DatasourceDefinition` and variable-replacement in annotations.
-You can read more about it link:[here].
-
-You can read more it link:http://dplatz.de/blog/2018/self-contained-jee-app.html[on my blog].
+You can read the details link:http://dplatz.de/blog/2018/self-contained-jee-app.html[on my blog].
 
 == Usage
 
